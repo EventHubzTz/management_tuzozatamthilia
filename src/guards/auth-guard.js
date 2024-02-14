@@ -9,8 +9,6 @@ export const AuthGuard = (props) => {
   const isAuthenticated = localStorage.getItem('authenticated') === 'true'
   const ignore = useRef(false);
   const [checked, setChecked] = useState(false);
-  const storedUserMap = localStorage.getItem('user');
-  const mapStoredUser = JSON.parse(storedUserMap);
 
   useEffect(
     () => {
@@ -27,7 +25,7 @@ export const AuthGuard = (props) => {
         setChecked(true);
       }
     },
-    [isAuthenticated, location.pathname, navigate, mapStoredUser]
+    [isAuthenticated, location.pathname, navigate]
   );
 
   if (!checked) {

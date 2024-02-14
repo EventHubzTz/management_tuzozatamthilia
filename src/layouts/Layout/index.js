@@ -8,10 +8,11 @@ import { Box, Toolbar, useMediaQuery } from '@mui/material';
 // project import
 import Drawer from './Drawer';
 import Header from './Header';
+import { withAuthGuard } from '../../hocs/with-auth-guard';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
-const Layout = ({ children }) => {
+const Layout = withAuthGuard(({ children }) => {
   const theme = useTheme();
   const matchDownLG = useMediaQuery(theme.breakpoints.down('lg'));
   const dispatch = useDispatch();
@@ -53,6 +54,6 @@ const Layout = ({ children }) => {
       </Box>
     </Box>
   );
-};
+});
 
 export default Layout;

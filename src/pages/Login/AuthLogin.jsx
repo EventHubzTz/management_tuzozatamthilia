@@ -1,11 +1,18 @@
 import React from 'react'
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Button, Checkbox, Divider, FormControlLabel, FormHelperText, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, Stack, Typography } from '@mui/material';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import AnimateButton from '../../components/@extended/AnimateButton';
+
+// third party
+import * as Yup from 'yup';
+import { Formik } from 'formik';
+import { GoogleLogin } from '@react-oauth/google';
+import { useAuth } from '../../hooks/use-auth';
 
 function AuthLogin() {
+    const navigate = useNavigate()
+    const auth = useAuth()
     const [checked, setChecked] = React.useState(false);
 
     const [showPassword, setShowPassword] = React.useState(false);
@@ -21,23 +28,16 @@ function AuthLogin() {
         <>
             <Formik
                 initialValues={{
-                    email: 'info@codedthemes.com',
-                    password: '123456',
+                    email: '',
+                    password: '',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
                     password: Yup.string().max(255).required('Password is required')
                 })}
-                onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-                    try {
-                        setStatus({ success: false });
-                        setSubmitting(false);
-                    } catch (err) {
-                        setStatus({ success: false });
-                        setErrors({ submit: err.message });
-                        setSubmitting(false);
-                    }
+                onSubmit={(values, helpers) => {
+                    auth.signIn(values.email, values.password, navigate, helpers)
                 }}
             >
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
@@ -124,11 +124,9 @@ function AuthLogin() {
                                 </Grid>
                             )}
                             <Grid item xs={12}>
-                                <AnimateButton>
-                                    <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
-                                        Login
-                                    </Button>
-                                </AnimateButton>
+                                <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
+                                    Login
+                                </Button>
                             </Grid>
                             <Grid item xs={12}>
                                 <Divider>
@@ -136,7 +134,13 @@ function AuthLogin() {
                                 </Divider>
                             </Grid>
                             <Grid item xs={12}>
-                                <FirebaseSocial />
+                                <GoogleLogin
+                                    onSuccess={async credentialResponse => {
+
+                                    }}
+                                    onError={() => { }}
+                                    useOneTap
+                                />
                             </Grid>
                         </Grid>
                     </form>

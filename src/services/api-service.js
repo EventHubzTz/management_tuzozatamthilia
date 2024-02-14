@@ -18,13 +18,12 @@ export const getRequest = async (url, onSuccess, onError) => {
 }
 
 export const authGetRequest = async (url, onSuccess, onError) => {
-    const storedUserMap = localStorage.getItem('user')
-    const mapStoredUser = JSON.parse(storedUserMap)
+    const token = localStorage.getItem('token')
     fetch(url, {
         headers: {
             ...contentTypeJson,
             ...headers,
-            'event-hub-token-auth': mapStoredUser.token,
+            'event-hub-token-auth': token,
         }
     })
         .then(response => response.json())
@@ -70,8 +69,7 @@ export const postRequest = async (url, body, onSuccess, onError, formData) => {
 
 export const authPostRequest = async (url, body, onSuccess, onError, formData) => {
     try {
-        const storedUserMap = localStorage.getItem('user')
-        const mapStoredUser = JSON.parse(storedUserMap)
+        const token = localStorage.getItem('token')
         const response = await axios.post(
             url,
             body,
@@ -81,7 +79,7 @@ export const authPostRequest = async (url, body, onSuccess, onError, formData) =
                         contentTypeFormData :
                         contentTypeJson,
                     ...headers,
-                    'event-hub-token-auth': mapStoredUser.token,
+                    'event-hub-token-auth': token,
                 },
             }
         )

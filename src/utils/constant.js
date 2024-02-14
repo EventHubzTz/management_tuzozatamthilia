@@ -1,6 +1,8 @@
 export const headers = { 'event-hub-sign-auth': `${process.env.REACT_APP_KEY}`, }
 export const contentTypeJson = { 'Content-Type': `application/json`, }
 export const contentTypeFormData = { 'Content-Type': `multipart/form-data`, }
+export const CREATE = "Create";
+export const UPDATE = "Update";
 export const capitalizeFirstLetter = (str) => {
     return str
         .replace(/_/g, ' ')
@@ -14,4 +16,7 @@ export function formatMoney(amount, currency = 'TZS') {
         style: 'currency',
         currency,
     }).format(amount);
+}
+export function removeUnderscore(word) {
+    return word.replace(/_/g, ' ');
 }

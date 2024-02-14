@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Grid } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 
 // project import
 import AuthCard from './AuthCard';
@@ -17,7 +17,7 @@ function AuthWrapper({ children }) {
                 }}
             >
                 <Grid item xs={12} sx={{ ml: 3, mt: 3 }}>
-                    Logo
+                    <Typography variant='h3'>Event Hub</Typography>
                 </Grid>
                 <Grid item xs={12}>
                     <Grid

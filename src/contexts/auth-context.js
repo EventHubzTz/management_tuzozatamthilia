@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useReducer, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { getUserUrl, loginByEmailPhoneUrl } from '../seed/url';
+import { authGetRequest, postRequest } from '../services/api-service';
 
 const HANDLERS = {
   INITIALIZE: 'INITIALIZE',
@@ -81,13 +83,22 @@ export const AuthProvider = (props) => {
     }
 
     if (isAuthenticated) {
-      const storedUserMap = localStorage.getItem("user");
-      const user = JSON.parse(storedUserMap);
-
-      dispatch({
-        type: HANDLERS.INITIALIZE,
-        payload: user
-      });
+      authGetRequest(
+        getUserUrl,
+        (data) => {
+          if (data.error) {
+            signOut()
+            return;
+          }
+          dispatch({
+            type: HANDLERS.INITIALIZE,
+            payload: data
+          });
+        },
+        () => {
+          signOut()
+        }
+      )
     } else {
       dispatch({
         type: HANDLERS.INITIALIZE
@@ -103,16 +114,63 @@ export const AuthProvider = (props) => {
     []
   );
 
+  const signIn = async (emailPhone, password, navigate, helpers) => {
+    postRequest(
+      loginByEmailPhoneUrl,
+      {
+        "email_phone": emailPhone,
+        "password": password
+      },
+      (data) => {
+        localStorage.setItem('token', data.data.token);
+        localStorage.setItem('authenticated', 'true');
+        authGetRequest(
+          getUserUrl,
+          (userData) => {
+            if (userData.error) {
+              helpers.setErrors({ submit: userData.message })
+              helpers.setStatus({ sucess: false })
+              helpers.setSubmitting(false)
+              return;
+            }
+            dispatch({
+              type: HANDLERS.SIGN_IN,
+              payload: userData
+            });
+            helpers.setStatus({ sucess: true })
+            helpers.setSubmitting(false)
+            navigate("/")
+          },
+          () => {
+            signOut()
+          }
+        )
+      },
+      (error) => {
+        if (error?.response?.data?.message) {
+          helpers.setErrors({ submit: error.response.data.message[0] })
+        } else if (error?.response?.data) {
+          helpers.setErrors(error?.response?.data)
+        }
+        helpers.setStatus({ sucess: false })
+        helpers.setSubmitting(false)
+      },
+    )
+  };
+
   const signOut = () => {
     dispatch({
       type: HANDLERS.SIGN_OUT
     });
+    localStorage.removeItem("authenticated")
+    localStorage.removeItem("token")
   };
 
   return (
     <AuthContext.Provider
       value={{
         ...state,
+        signIn,
         signOut
       }}
     >

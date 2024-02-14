@@ -28,8 +28,8 @@ import SettingTab from './SettingTab';
 // assets
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { useAuth } from '../../../../../hooks/use-auth';
-import { googleLogout } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
+import { removeUnderscore } from '../../../../../utils/constant';
 
 // tab panel wrapper
 function TabPanel({ children, value, index, ...other }) {
@@ -62,11 +62,6 @@ const Profile = () => {
 
   const handleLogout = async () => {
     auth.signOut();
-    if (auth.user?.email) {
-      googleLogout()
-    }
-    localStorage.removeItem("authenticated")
-    localStorage.removeItem("afyaUser")
     navigate('/login');
   };
 
@@ -107,8 +102,8 @@ const Profile = () => {
         onClick={handleToggle}
       >
         <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
-          <Avatar alt="profile user" sx={{ width: 32, height: 32 }} />
-          <Typography variant="subtitle1">{auth?.user?.name}</Typography>
+          <Avatar src={auth?.user?.profile_image} alt="profile user" sx={{ width: 32, height: 32 }} />
+          <Typography variant="subtitle1">{auth?.user?.first_name} {auth?.user?.last_name}</Typography>
         </Stack>
       </ButtonBase>
       <Popper
@@ -149,11 +144,11 @@ const Profile = () => {
                       <Grid container justifyContent="space-between" alignItems="center">
                         <Grid item>
                           <Stack direction="row" spacing={1.25} alignItems="center">
-                            <Avatar alt="profile user" sx={{ width: 32, height: 32 }} />
+                            <Avatar src={auth?.user?.profile_image} alt="profile user" sx={{ width: 32, height: 32 }} />
                             <Stack>
-                              <Typography variant="h6">{auth?.user?.name}</Typography>
+                              <Typography variant="h6">{auth?.user?.first_name} {auth?.user?.last_name}</Typography>
                               <Typography variant="body2" color="textSecondary">
-                                Admin
+                                {removeUnderscore(auth?.user?.role).toLowerCase()}
                               </Typography>
                             </Stack>
                           </Stack>

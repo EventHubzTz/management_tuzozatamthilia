@@ -11,7 +11,7 @@ import { CustomTable } from "../../components/custom-table";
 import { CustomSearch } from "../../components/custom-search";
 import { usersHeadCells } from "../../seed/table-headers";
 import { ConfirmationDialog } from "../../components/confirmation-dialog";
-import { CREATE } from "../../utils/constant";
+import { CREATE, userRoles } from "../../utils/constant";
 import { authPostRequest } from "../../services/api-service";
 import {
     deleteAccountUrl,
@@ -24,6 +24,7 @@ import { FormDialog } from "../../components/form-dialog";
 import { userFormFields } from "../../seed/form-fields";
 import Layout from "../../layouts/Layout";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
+import { MaterialUICustomTabs } from "../../components/MaterialUICustomTabs";
 
 const useContentsIds = (administrators) => {
     return React.useMemo(() => {
@@ -32,6 +33,7 @@ const useContentsIds = (administrators) => {
 };
 
 function Users() {
+    const [currentTab, setCurrentTab] = React.useState("NORMAL_USER");
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [administrators, setAdministrators] = React.useState({
         page: 1,
@@ -77,7 +79,7 @@ function Users() {
             authPostRequest(
                 getAllUsersByRoleUrl,
                 {
-                    role: "SUPER_ADMIN",
+                    role: currentTab,
                     query: searchTerm,
                     sort: orderBy + " " + order,
                     limit: rowsPerPage,
@@ -98,7 +100,7 @@ function Users() {
                 }
             );
         },
-        [rowsPerPage, searchTerm, orderBy, order]
+        [rowsPerPage, searchTerm, orderBy, order, currentTab]
     );
 
     const enableDisableUser = (data) => {
@@ -246,7 +248,7 @@ function Users() {
                     handleAction={handleDelete}
                     isPerformingAction={isDeleting}
                     dialogTitle={"Delete Alert"}
-                    dialogContentText={"Are you sure you want to delete this item?"}
+                    dialogContentText={"Are you sure you want to delete this user?"}
                 />
             )}
             <Box
@@ -278,6 +280,11 @@ function Users() {
                                 </Button>
                             </div>
                         </Stack>
+                        <MaterialUICustomTabs
+                            activeTab={currentTab}
+                            setActiveTab={setCurrentTab}
+                            tabsData={userRoles}
+                        />
                         <CustomSearch handleSearch={handleSearch} />
                         <CustomTable
                             order={order}

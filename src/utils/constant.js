@@ -3,6 +3,11 @@ export const contentTypeJson = { 'Content-Type': `application/json`, }
 export const contentTypeFormData = { 'Content-Type': `multipart/form-data`, }
 export const CREATE = "Create";
 export const UPDATE = "Update";
+export const userRoles = [
+    { label: "Normal User", value: "NORMAL_USER" },
+    { label: "Event Planner", value: "EVENT_PLANNER" },
+    { label: "Super Admin", value: "SUPER_ADMIN" }
+]
 export const capitalizeFirstLetter = (str) => {
     return str
         .replace(/_/g, ' ')

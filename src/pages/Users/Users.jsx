@@ -33,7 +33,7 @@ const useContentsIds = (administrators) => {
 };
 
 function Users() {
-    const [currentTab, setCurrentTab] = React.useState("NORMAL_USER");
+    const [currentTab, setCurrentTab] = React.useState(userRoles[0].value);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [administrators, setAdministrators] = React.useState({
         page: 1,

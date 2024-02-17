@@ -27,3 +27,10 @@ export const userFormFields = [
         minimumCharacters: 3
     },
 ]
+
+export const eventFormFields = [
+    { name: "event_name", type: "text", label: "Event Name", notRequired: false, minimumCharacters: 3 },
+    { name: "event_location", type: "text", label: "Event Location", notRequired: false, minimumCharacters: 3 },
+    { name: "event_time", type: "text", label: "Event Time", notRequired: false, minimumCharacters: 3 },
+    { name: "event_description", type: "text", label: "Event Description", notRequired: false, minimumCharacters: 3 },
+]

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Grid, Typography } from '@mui/material'
+import { Avatar, Box, Grid, Typography } from '@mui/material'
 
 // project import
 import AuthCard from './AuthCard';
@@ -16,8 +16,9 @@ function AuthWrapper({ children }) {
                     minHeight: '100vh'
                 }}
             >
-                <Grid item xs={12} sx={{ ml: 3, mt: 3 }}>
-                    <Typography variant='h3'>Event Hub</Typography>
+                <Grid display="flex" alignItems="center" item xs={12} sx={{ ml: 3, mt: 3 }}>
+                    <Avatar alt='logo' src='/assets/images/logo.png' />
+                    <Typography variant='h3' sx={{ ml: 2 }}>Event Hub</Typography>
                 </Grid>
                 <Grid item xs={12}>
                     <Grid

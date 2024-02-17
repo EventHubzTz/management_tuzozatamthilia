@@ -16,7 +16,7 @@ export const CustomSearch = ({
 
   return (
     <Card
-      elevation={1}
+      variant="outlined"
       sx={{
         position: 'sticky',
         top: 92,

@@ -4,9 +4,16 @@ export const contentTypeFormData = { 'Content-Type': `multipart/form-data`, }
 export const CREATE = "Create";
 export const UPDATE = "Update";
 export const userRoles = [
-    { label: "Normal User", value: "NORMAL_USER" },
-    { label: "Event Planner", value: "EVENT_PLANNER" },
-    { label: "Super Admin", value: "SUPER_ADMIN" }
+    { label: "All", value: "" },
+    { label: "Normal Users", value: "NORMAL_USER" },
+    { label: "Event Planners", value: "EVENT_PLANNER" },
+    { label: "Super Admins", value: "SUPER_ADMIN" }
+]
+export const paymentStatus = [
+    { label: "All", value: "" },
+    { label: "Completed", value: "COMPLETED" },
+    { label: "Pending", value: "PENDING" },
+    { label: "Cancelled", value: "CANCELLED" }
 ]
 export const capitalizeFirstLetter = (str) => {
     return str

@@ -63,7 +63,7 @@ export const CustomTable = (props) => {
         />
       }
       <Card
-        elevation={1}
+        variant="outlined"
       >
         <Scrollbar>
           <Box sx={{ minWidth: 800 }}>

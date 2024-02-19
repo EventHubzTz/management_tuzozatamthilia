@@ -12,16 +12,24 @@ import { CustomSearch } from "../../components/custom-search";
 import { eventHeadCells } from "../../seed/table-headers";
 import { ConfirmationDialog } from "../../components/confirmation-dialog";
 import { CREATE, UPDATE } from "../../utils/constant";
-import { authPostRequest } from "../../services/api-service";
+import { authGetRequest, authPostRequest } from "../../services/api-service";
 import {
-    deleteAccountUrl,
-    registerUserByRoleUrl,
+    addEventUrl,
+    deleteEventUrl,
+    getAllCategoriesUrl,
+    getAllSubCategoriesUrl,
+    getEventsUrl,
+    updateEventUrl,
 } from "../../seed/url";
 import { CustomAlert } from "../../components/custom-alert";
 import { FormDialog } from "../../components/form-dialog";
 import { eventFormFields } from "../../seed/form-fields";
 import Layout from "../../layouts/Layout";
-import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { CameraOutlined, DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { useSelector } from "react-redux";
+import { formatDate } from "../../utils/date-formatter";
+import dayjs from "dayjs";
+import ViewEventMedia from "./ViewEventMedia";
 
 const useContentsIds = (administrators) => {
     return React.useMemo(() => {
@@ -30,6 +38,9 @@ const useContentsIds = (administrators) => {
 };
 
 function Events() {
+    const formInfo = useSelector((state) => state.FormInformationReducer);
+    const [categories, setCategories] = React.useState([]);
+    const [formFields, setFormFields] = React.useState(eventFormFields);
     const [action, setAction] = React.useState(CREATE);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [administrators, setAdministrators] = React.useState({
@@ -45,6 +56,7 @@ function Events() {
     const administratorsIds = useContentsIds(administrators.results);
     const adminSelection = useSelection(administratorsIds);
     const [openCreateDialog, setOpenCreateDialog] = React.useState(false);
+    const [openViewEventMediaDialog, setOpenViewEventMediaDialog] = React.useState(false);
     const [openDeleteDialog, setOpenDeleteDialog] = React.useState(false);
     const [openAlert, setOpenAlert] = React.useState(false);
     const [severity, setSeverity] = React.useState("");
@@ -54,8 +66,11 @@ function Events() {
             id: action === UPDATE ? selectedData.id : 0,
             event_name: action === UPDATE ? selectedData.event_name : "",
             event_location: action === UPDATE ? selectedData.event_location : "",
-            event_time: action === UPDATE ? selectedData.event_time : "",
+            event_time: action === UPDATE ? dayjs(formatDate(selectedData.event_time)) : null,
             event_description: action === UPDATE ? selectedData.event_description : "",
+            event_capacity: action === UPDATE ? selectedData.event_capacity : "",
+            event_category_id: action === UPDATE ? selectedData.event_category_id : "",
+            event_sub_category_id: action === UPDATE ? selectedData.event_sub_category_id : "",
         },
     ];
     const [order, setOrder] = React.useState('desc');
@@ -71,7 +86,7 @@ function Events() {
         (page) => {
             setIsLoading(true);
             authPostRequest(
-                "",
+                getEventsUrl,
                 {
                     query: searchTerm,
                     sort: orderBy + " " + order,
@@ -100,9 +115,80 @@ function Events() {
         setSearchTerm(event.target.value);
     };
 
+    const getAllSubCategories = React.useCallback((categoryId) => {
+        authPostRequest(
+            getAllSubCategoriesUrl,
+            {
+                id: categoryId
+            },
+            (data) => {
+                const newProductsSubCategories = data.map((category) => {
+                    const newItem = {};
+                    ["label", "value"].forEach((item) => {
+                        if (item === "label") {
+                            newItem[item] = category.event_sub_category_name;
+                        }
+                        if (item === "value") {
+                            newItem[item] = category.id;
+                        }
+                    });
+                    return newItem;
+                });
+                let newFormFields = formFields;
+                newFormFields[6].items = newProductsSubCategories;
+                setFormFields(newFormFields);
+                setIsLoading(false)
+            },
+            (error) => {
+                let newFormFields = formFields;
+                newFormFields[6].items = [];
+                setFormFields(newFormFields);
+                setIsLoading(false)
+            },
+        )
+    }, [formFields])
+
     React.useEffect(() => {
         fetcher(1);
     }, [fetcher]);
+
+    React.useEffect(() => {
+        authGetRequest(
+            getAllCategoriesUrl,
+            (data) => {
+                setCategories(data);
+            },
+            (error) => {
+                setIsLoading(false);
+            }
+        )
+    }, [])
+
+    React.useEffect(() => {
+        if (formInfo.event_category_id) {
+            getAllSubCategories(formInfo?.event_category_id)
+        }
+    }, [formInfo, getAllSubCategories])
+
+    React.useEffect(() => {
+        if (categories.length > 0) {
+            const newProductsCategories = categories.map((category) => {
+                const newItem = {};
+                ["label", "value"].forEach((item) => {
+                    if (item === "label") {
+                        newItem[item] = category.event_category_name;
+                    }
+                    if (item === "value") {
+                        newItem[item] = category.id;
+                    }
+                });
+                return newItem;
+            });
+            let newFormFields = formFields;
+            newFormFields[5].items = newProductsCategories;
+            setFormFields(newFormFields);
+        }
+    }, [categories, formFields])
 
     const handlePageChange = React.useCallback(
         (event, value) => {
@@ -124,6 +210,14 @@ function Events() {
         setOpenCreateDialog(false);
         setAction(CREATE);
     };
+
+    const handleClickOpenViewEventMediaDialog = () => {
+        setOpenViewEventMediaDialog(true)
+    }
+
+    const handleCloseViewEventMediaDialog = () => {
+        setOpenViewEventMediaDialog(false)
+    }
 
     const handleClickOpenDeleteDialog = () => {
         setOpenDeleteDialog(true);
@@ -152,9 +246,9 @@ function Events() {
     const handleDelete = async () => {
         setIsDeleting(true);
         authPostRequest(
-            deleteAccountUrl,
+            deleteEventUrl,
             {
-                user_id: selectedData.id,
+                id: selectedData.id,
             },
             (data) => {
                 fetcher(administrators.page);
@@ -177,8 +271,16 @@ function Events() {
 
     const contentPopoverItems = [
         {
+            id: 'media',
+            label: 'Media',
+            icon: <CameraOutlined />,
+            onClick: () => {
+                handleClickOpenViewEventMediaDialog()
+            },
+        },
+        {
             id: "edit",
-            label: "Edit Event",
+            label: "Edit",
             icon: (
                 <EditOutlined />
             ),
@@ -217,9 +319,18 @@ function Events() {
                     action={action}
                     fields={eventFormFields}
                     values={values}
-                    url={registerUserByRoleUrl}
+                    url={
+                        action === CREATE ? addEventUrl : updateEventUrl
+                    }
                 />
             )}
+            {openViewEventMediaDialog &&
+                <ViewEventMedia
+                    open={openViewEventMediaDialog}
+                    handleClose={handleCloseViewEventMediaDialog}
+                    selected={selectedData}
+                />
+            }
             {openDeleteDialog && (
                 <ConfirmationDialog
                     open={openDeleteDialog}

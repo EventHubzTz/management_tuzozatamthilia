@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { CREATE } from '../utils/constant';
 import { PaperClipOutlined, XOutlined } from '@ant-design/icons';
+import { MuiColorInput } from 'mui-color-input';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />
@@ -72,7 +73,7 @@ export const FormDialog = ({
                         if (fields[i].type === "date") {
                             body = { ...body, [fields[i].name]: values[fields[i].name].format("DD/MM/YYYY") }
                         } else if (fields[i].type === "dateTime") {
-                            body = { ...body, [fields[i].name]: values[fields[i].name].format('YYYY-MM-DD HH:mm:ss.SSS') }
+                            body = { ...body, [fields[i].name]: values[fields[i].name].format('YYYY-MM-DDTHH:mm:ssZ') }
                         } else if (fields[i].type === "number") {
                             body = { ...body, [fields[i].name]: parseInt(values[fields[i].name]) }
                         } else if (fields[i].name === "region" || fields[i].name === "district" || fields[i].name === "ward") {
@@ -258,6 +259,7 @@ export const FormDialog = ({
                                                                 value={values[field.name]}
                                                                 onChange={(newValue) => {
                                                                     setFieldValue(field.name, newValue)
+                                                                    console.log(newValue)
                                                                 }}
                                                                 slotProps={{
                                                                     textField: {
@@ -347,21 +349,39 @@ export const FormDialog = ({
                                                                         />
                                                                     )}
                                                                 /> :
-                                                                <TextField
-                                                                    id={field.name}
-                                                                    multiline
-                                                                    required={field?.notRequired === false}
-                                                                    name={field.name}
-                                                                    type={field.type}
-                                                                    label={field.label}
-                                                                    margin="normal"
-                                                                    fullWidth
-                                                                    value={values[field.name]}
-                                                                    error={Boolean(errors[field.name] && touched[field.name])}
-                                                                    helperText={touched[field.name] && errors[field.name]}
-                                                                    onBlur={handleBlur}
-                                                                    onChange={handleChange}
-                                                                />
+                                                                field.type === "color" ?
+                                                                    <MuiColorInput
+                                                                        id={field.name}
+                                                                        required
+                                                                        name={field.name}
+                                                                        label={field.label}
+                                                                        margin="normal"
+                                                                        format="hex"
+                                                                        fallbackValue="#ffffff"
+                                                                        fullWidth
+                                                                        value={values[field.name]}
+                                                                        error={Boolean(errors[field.name] && touched[field.name])}
+                                                                        helperText={touched[field.name] && errors[field.name]}
+                                                                        onBlur={handleBlur}
+                                                                        onChange={(newValue) => {
+                                                                            setFieldValue(field.name, newValue)
+                                                                        }}
+                                                                    /> :
+                                                                    <TextField
+                                                                        id={field.name}
+                                                                        multiline
+                                                                        required={field?.notRequired === false}
+                                                                        name={field.name}
+                                                                        type={field.type}
+                                                                        label={field.label}
+                                                                        margin="normal"
+                                                                        fullWidth
+                                                                        value={values[field.name]}
+                                                                        error={Boolean(errors[field.name] && touched[field.name])}
+                                                                        helperText={touched[field.name] && errors[field.name]}
+                                                                        onBlur={handleBlur}
+                                                                        onChange={handleChange}
+                                                                    />
                                         }
                                     </React.Fragment>
                                 )

@@ -7,12 +7,17 @@ import Users from "../pages/Users/Users";
 import Wallet from "../pages/Wallet/Wallet";
 import Profile from "../pages/Profile/Profile";
 import Settings from "../pages/Settings/Settings";
+import Categories from "../pages/Categories/Categories";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Dashboard />,
         errorElement: <Dashboard />,
+    },
+    {
+        path: "categories",
+        element: <Categories />,
     },
     {
         path: "events",

@@ -88,6 +88,7 @@ export const AuthProvider = (props) => {
         (data) => {
           if (data.error) {
             signOut()
+            window.location.href = "/login";
             return;
           }
           dispatch({
@@ -97,6 +98,7 @@ export const AuthProvider = (props) => {
         },
         () => {
           signOut()
+          window.location.href = "/login";
         }
       )
     } else {
@@ -162,8 +164,7 @@ export const AuthProvider = (props) => {
     dispatch({
       type: HANDLERS.SIGN_OUT
     });
-    localStorage.removeItem("authenticated")
-    localStorage.removeItem("token")
+    localStorage.clear()
   };
 
   return (

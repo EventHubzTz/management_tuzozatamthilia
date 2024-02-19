@@ -28,9 +28,23 @@ export const userFormFields = [
     },
 ]
 
+export const categoriesFormFields = [
+    { name: "event_category_name", type: "text", label: "Category Name", notRequired: false, minimumCharacters: 3 },
+    { name: "event_category_color", type: "color", label: "Category Color", notRequired: false, minimumCharacters: 3 },
+    { name: "image", type: "file", label: "Category Image", notRequired: false, minimumCharacters: 3 },
+]
+
+export const subCategoriesFormFields = [
+    { name: "event_sub_category_name", type: "text", label: "Sub Category Name", notRequired: false, minimumCharacters: 3 },
+    { name: "image", type: "file", label: "Category Image", notRequired: false, minimumCharacters: 3 },
+]
+
 export const eventFormFields = [
     { name: "event_name", type: "text", label: "Event Name", notRequired: false, minimumCharacters: 3 },
     { name: "event_location", type: "text", label: "Event Location", notRequired: false, minimumCharacters: 3 },
-    { name: "event_time", type: "text", label: "Event Time", notRequired: false, minimumCharacters: 3 },
+    { name: "event_time", type: "dateTime", label: "Event Time", notRequired: false, minimumCharacters: 3 },
     { name: "event_description", type: "text", label: "Event Description", notRequired: false, minimumCharacters: 3 },
+    { name: "event_capacity", type: "number", label: "Event Capacity", notRequired: false, minimumCharacters: 1 },
+    { name: "event_category_id", type: "select", label: "Event Category", items: [], notRequired: false, minimumCharacters: 1 },
+    { name: "event_sub_category_id", type: "select", label: "Event Sub Category", items: [], notRequired: false, minimumCharacters: 1 },
 ]

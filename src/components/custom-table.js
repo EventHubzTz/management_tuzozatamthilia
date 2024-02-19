@@ -137,6 +137,16 @@ export const CustomTable = (props) => {
                                 </Stack>
                               </TableCell>
                             )
+                          } else if (column.id === 'event_category_color') {
+                            return (
+                              <TableCell key={index}>
+                                <Avatar
+                                  variant='rounded'
+                                  sx={{ bgcolor: row?.event_category_color || row?.service_color || row?.color }}
+                                  src={row.icon_url || row?.image_url || row?.icon}
+                                />
+                              </TableCell>
+                            )
                           } else if (column.id === 'icon' || column.id === 'image_url') {
                             return (
                               <TableCell

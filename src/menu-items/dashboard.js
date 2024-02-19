@@ -1,5 +1,5 @@
 // assets
-import { DashboardOutlined, FieldTimeOutlined, MoneyCollectOutlined, SettingOutlined, UsergroupAddOutlined, UserOutlined, WalletOutlined } from '@ant-design/icons';
+import { DashboardOutlined, FieldTimeOutlined, MoneyCollectOutlined, SettingOutlined, TableOutlined, UsergroupAddOutlined, UserOutlined, WalletOutlined } from '@ant-design/icons';
 
 // icons
 const icons = {
@@ -7,6 +7,7 @@ const icons = {
   FieldTimeOutlined,
   MoneyCollectOutlined,
   SettingOutlined,
+  TableOutlined,
   UsergroupAddOutlined,
   UserOutlined,
   WalletOutlined,
@@ -25,6 +26,14 @@ const dashboard = {
       type: 'item',
       url: '/',
       icon: icons.DashboardOutlined,
+      breadcrumbs: false
+    },
+    {
+      id: 'categories',
+      title: 'Categories',
+      type: 'item',
+      url: '/categories',
+      icon: icons.TableOutlined,
       breadcrumbs: false
     },
     {

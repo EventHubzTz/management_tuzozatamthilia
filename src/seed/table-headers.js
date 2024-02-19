@@ -33,6 +33,52 @@ export const usersHeadCells = [
     },
 ]
 
+export const categoriesHeadCells = [
+    {
+        id: 'id',
+        label: 'ID',
+    },
+    {
+        id: 'event_category_name',
+        label: 'Category Name',
+    },
+    {
+        id: 'actions',
+        label: '',
+    },
+    {
+        id: 'event_category_color',
+        label: 'Category Color',
+    },
+    {
+        id: 'created_at',
+        label: 'Date',
+    },
+]
+
+export const subCategoriesHeadCells = [
+    {
+        id: 'id',
+        label: 'ID',
+    },
+    {
+        id: 'event_sub_category_name',
+        label: 'Sub Category Name',
+    },
+    {
+        id: 'actions',
+        label: '',
+    },
+    {
+        id: 'icon',
+        label: 'Sub Category Image',
+    },
+    {
+        id: 'created_at',
+        label: 'Date',
+    },
+]
+
 export const eventHeadCells = [
     {
         id: 'id',
@@ -47,12 +93,24 @@ export const eventHeadCells = [
         label: '',
     },
     {
+        id: 'event_category_name',
+        label: 'Event Category',
+    },
+    {
+        id: 'event_sub_category_name',
+        label: 'Event Sub Category',
+    },
+    {
         id: 'event_location',
         label: 'Event Location',
     },
     {
         id: 'event_time',
         label: 'Event Time',
+    },
+    {
+        id: 'event_capacity',
+        label: 'Event Capacity',
     },
     {
         id: 'event_description',

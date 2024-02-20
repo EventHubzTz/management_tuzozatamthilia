@@ -69,6 +69,7 @@ function Events() {
             event_time: action === UPDATE ? dayjs(formatDate(selectedData.event_time)) : null,
             event_description: action === UPDATE ? selectedData.event_description : "",
             event_capacity: action === UPDATE ? selectedData.event_capacity : "",
+            event_entrance: action === UPDATE ? selectedData.event_entrance : "",
             event_category_id: action === UPDATE ? selectedData.event_category_id : "",
             event_sub_category_id: action === UPDATE ? selectedData.event_sub_category_id : "",
         },

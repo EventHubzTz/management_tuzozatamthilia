@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Stack, Typography } from '@mui/material';
+import { Avatar, Box, Stack, Typography } from '@mui/material';
 
 // project import
 import DrawerHeaderStyled from './DrawerHeaderStyled';
@@ -23,7 +23,15 @@ const DrawerHeader = ({ open }) => {
         sx={{ cursor: "pointer" }}
         onClick={() => navigate("/")}
       >
-        <Typography variant='h5'>EVENT HUB</Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center"
+          }}
+        >
+          <Avatar alt='logo' src='/assets/images/logo.png' />
+          <Typography variant='h3' sx={{ ml: 2 }}>Event Hub</Typography>
+        </Box>
       </Stack>
     </DrawerHeaderStyled>
   );

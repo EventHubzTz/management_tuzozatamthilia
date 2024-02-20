@@ -113,6 +113,10 @@ export const eventHeadCells = [
         label: 'Event Capacity',
     },
     {
+        id: 'event_entrance',
+        label: 'Event Entrance',
+    },
+    {
         id: 'event_description',
         label: 'Event Description',
     },

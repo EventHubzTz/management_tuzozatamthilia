@@ -26,7 +26,8 @@ const dashboard = {
       type: 'item',
       url: '/',
       icon: icons.DashboardOutlined,
-      breadcrumbs: false
+      breadcrumbs: false,
+      roles: ["EVENT_PLANNER", "SUPER_ADMIN"]
     },
     {
       id: 'categories',
@@ -34,7 +35,8 @@ const dashboard = {
       type: 'item',
       url: '/categories',
       icon: icons.TableOutlined,
-      breadcrumbs: false
+      breadcrumbs: false,
+      roles: ["SUPER_ADMIN"]
     },
     {
       id: 'events',
@@ -42,7 +44,8 @@ const dashboard = {
       type: 'item',
       url: '/events',
       icon: icons.FieldTimeOutlined,
-      breadcrumbs: false
+      breadcrumbs: false,
+      roles: ["EVENT_PLANNER", "SUPER_ADMIN"]
     },
     {
       id: 'payments',
@@ -50,7 +53,8 @@ const dashboard = {
       type: 'item',
       url: '/payments',
       icon: icons.MoneyCollectOutlined,
-      breadcrumbs: false
+      breadcrumbs: false,
+      roles: ["EVENT_PLANNER", "SUPER_ADMIN"]
     },
     {
       id: 'users',
@@ -58,7 +62,8 @@ const dashboard = {
       type: 'item',
       url: '/users',
       icon: icons.UsergroupAddOutlined,
-      breadcrumbs: false
+      breadcrumbs: false,
+      roles: ["SUPER_ADMIN"]
     },
     {
       id: 'wallet',
@@ -66,7 +71,8 @@ const dashboard = {
       type: 'item',
       url: '/wallet',
       icon: icons.WalletOutlined,
-      breadcrumbs: false
+      breadcrumbs: false,
+      roles: ["EVENT_PLANNER", "SUPER_ADMIN"]
     },
     {
       id: 'profile',
@@ -74,7 +80,8 @@ const dashboard = {
       type: 'item',
       url: '/profile',
       icon: icons.UserOutlined,
-      breadcrumbs: false
+      breadcrumbs: false,
+      roles: ["EVENT_PLANNER", "SUPER_ADMIN"]
     },
     {
       id: 'settings',
@@ -82,7 +89,8 @@ const dashboard = {
       type: 'item',
       url: '/settings',
       icon: icons.SettingOutlined,
-      breadcrumbs: false
+      breadcrumbs: false,
+      roles: ["SUPER_ADMIN"]
     },
   ]
 };

@@ -86,7 +86,7 @@ export const AuthProvider = (props) => {
       authGetRequest(
         getUserUrl,
         (data) => {
-          if (data.error) {
+          if (data.error || data.role === "NORMAL_USER") {
             signOut()
             window.location.href = "/login";
             return;
@@ -129,7 +129,7 @@ export const AuthProvider = (props) => {
         authGetRequest(
           getUserUrl,
           (userData) => {
-            if (userData.error) {
+            if (userData.error || userData.role === "NORMAL_USER") {
               helpers.setErrors({ submit: userData.message })
               helpers.setStatus({ sucess: false })
               helpers.setSubmitting(false)

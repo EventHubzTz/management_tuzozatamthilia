@@ -30,6 +30,7 @@ import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons
 import { useAuth } from '../../../../../hooks/use-auth';
 import { useNavigate } from 'react-router-dom';
 import { removeUnderscore } from '../../../../../utils/constant';
+import { eventHubServiceUrl } from '../../../../../seed/url';
 
 // tab panel wrapper
 function TabPanel({ children, value, index, ...other }) {
@@ -102,7 +103,7 @@ const Profile = () => {
         onClick={handleToggle}
       >
         <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
-          <Avatar src={auth?.user?.profile_image} alt="profile user" sx={{ width: 32, height: 32 }} />
+          <Avatar src={`${eventHubServiceUrl}${auth?.user?.profile_image}`} alt="profile user" sx={{ width: 32, height: 32 }} />
           <Typography variant="subtitle1">{auth?.user?.first_name} {auth?.user?.last_name}</Typography>
         </Stack>
       </ButtonBase>
@@ -144,7 +145,7 @@ const Profile = () => {
                       <Grid container justifyContent="space-between" alignItems="center">
                         <Grid item>
                           <Stack direction="row" spacing={1.25} alignItems="center">
-                            <Avatar src={auth?.user?.profile_image} alt="profile user" sx={{ width: 32, height: 32 }} />
+                            <Avatar src={`${eventHubServiceUrl}${auth?.user?.profile_image}`} alt="profile user" sx={{ width: 32, height: 32 }} />
                             <Stack>
                               <Typography variant="h6">{auth?.user?.first_name} {auth?.user?.last_name}</Typography>
                               <Typography variant="body2" color="textSecondary">

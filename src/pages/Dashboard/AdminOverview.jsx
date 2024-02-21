@@ -3,12 +3,14 @@ import { Grid, Skeleton } from '@mui/material'
 import AnalyticEcommerce from '../../components/cards/statistics/AnalyticEcommerce';
 import { authGetRequest } from '../../services/api-service';
 import { getDashboardStatisticsUrl } from '../../seed/url';
+import { formatMoney } from '../../utils/constant';
 
 function AdminOverview() {
     const [isLoading, setIsLoading] = React.useState(true);
     const [dashboardData, setDashboardData] = React.useState({
         total_users: 0,
-        total_events: 0
+        total_events: 0,
+        total_amount: 0
     });
 
     const getProductsOrdersStatistics = React.useCallback(
@@ -58,7 +60,7 @@ function AdminOverview() {
                         <AnalyticEcommerce title="Total Events" count={dashboardData.total_events} />
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <AnalyticEcommerce title="Total Sales" count="TZS 35,035,078" />
+                        <AnalyticEcommerce title="Total Sales" count={formatMoney(dashboardData.total_amount)} />
                     </Grid>
                 </>
             }

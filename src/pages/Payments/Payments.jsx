@@ -13,7 +13,7 @@ import { ConfirmationDialog } from "../../components/confirmation-dialog";
 import { paymentStatus } from "../../utils/constant";
 import { authPostRequest } from "../../services/api-service";
 import {
-    deleteAccountUrl,
+    deleteAccountUrl, getAllPaymentTransactionsUrl,
 } from "../../seed/url";
 import { CustomAlert } from "../../components/custom-alert";
 import Layout from "../../layouts/Layout";
@@ -58,9 +58,10 @@ function Payments() {
         (page) => {
             setIsLoading(true);
             authPostRequest(
-                "",
+                getAllPaymentTransactionsUrl,
                 {
                     query: searchTerm,
+                    status: currentTab,
                     sort: orderBy + " " + order,
                     limit: rowsPerPage,
                     page: page,
@@ -80,7 +81,7 @@ function Payments() {
                 }
             );
         },
-        [rowsPerPage, searchTerm, orderBy, order]
+        [rowsPerPage, searchTerm, orderBy, order, currentTab]
     );
 
     const handleSearch = (event) => {

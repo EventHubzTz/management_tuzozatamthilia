@@ -179,11 +179,7 @@ export const CustomTable = (props) => {
                                     size={26}
                                   /> :
                                   <IOSSwitch
-                                    checked={
-                                      row.is_published === "YES" || row.status === "ACTIVE" || row.status === "AVAILABLE" ?
-                                        true :
-                                        false
-                                    }
+                                    checked={row.active}
                                     onChange={() => switchFunction(row)}
                                   />
                                 }

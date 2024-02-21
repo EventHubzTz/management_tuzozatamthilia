@@ -93,6 +93,10 @@ export const eventHeadCells = [
         label: '',
     },
     {
+        id: 'event_owner',
+        label: 'Event Owner',
+    },
+    {
         id: 'event_category_name',
         label: 'Event Category',
     },
@@ -132,6 +136,10 @@ export const paymentHeadCells = [
         label: 'Order ID',
     },
     {
+        id: 'transaction_id',
+        label: 'Transaction ID',
+    },
+    {
         id: 'event_name',
         label: 'Event Name',
     },
@@ -140,7 +148,11 @@ export const paymentHeadCells = [
         label: 'Amount',
     },
     {
-        id: 'payment_number',
+        id: 'full_name',
+        label: 'Full Name',
+    },
+    {
+        id: 'phone_number',
         label: 'Payment Number',
     },
     {

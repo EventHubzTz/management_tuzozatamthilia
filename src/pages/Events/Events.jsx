@@ -136,13 +136,13 @@ function Events() {
                     return newItem;
                 });
                 let newFormFields = formFields;
-                newFormFields[6].items = newProductsSubCategories;
+                newFormFields[7].items = newProductsSubCategories;
                 setFormFields(newFormFields);
                 setIsLoading(false)
             },
             (error) => {
                 let newFormFields = formFields;
-                newFormFields[6].items = [];
+                newFormFields[7].items = [];
                 setFormFields(newFormFields);
                 setIsLoading(false)
             },
@@ -186,7 +186,7 @@ function Events() {
                 return newItem;
             });
             let newFormFields = formFields;
-            newFormFields[5].items = newProductsCategories;
+            newFormFields[6].items = newProductsCategories;
             setFormFields(newFormFields);
         }
     }, [categories, formFields])

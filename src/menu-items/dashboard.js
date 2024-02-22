@@ -72,7 +72,7 @@ const dashboard = {
       url: '/wallet',
       icon: icons.WalletOutlined,
       breadcrumbs: false,
-      roles: ["EVENT_PLANNER", "SUPER_ADMIN"]
+      roles: ["EVENT_PLANNER"]
     },
     {
       id: 'profile',

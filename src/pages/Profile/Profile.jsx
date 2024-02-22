@@ -5,6 +5,7 @@ import ChangePassword from '../../components/ChangePassword'
 import Layout from '../../layouts/Layout'
 import { EditOutlined } from '@ant-design/icons'
 import { removeUnderscore } from '../../utils/constant'
+import { eventHubServiceUrl } from '../../seed/url'
 
 function Profile() {
     const auth = useAuth()
@@ -29,6 +30,7 @@ function Profile() {
                             width: 80,
                             height: 80
                         }}
+                        src={`${eventHubServiceUrl}${auth?.user?.profile_image}`}
                     />
                     <Typography
                         variant='h1'
@@ -42,7 +44,7 @@ function Profile() {
                         <TableBody>
                             <TableRow>
                                 <TableCell>
-                                    <Typography variant='h3'>
+                                    <Typography variant='h5'>
                                         Name
                                     </Typography>
                                 </TableCell>
@@ -59,7 +61,7 @@ function Profile() {
                             </TableRow>
                             <TableRow>
                                 <TableCell>
-                                    <Typography variant='h3'>
+                                    <Typography variant='h5'>
                                         Email
                                     </Typography>
                                 </TableCell>
@@ -76,7 +78,7 @@ function Profile() {
                             </TableRow>
                             <TableRow>
                                 <TableCell>
-                                    <Typography variant='h3'>
+                                    <Typography variant='h5'>
                                         Phone Number
                                     </Typography>
                                 </TableCell>
@@ -93,7 +95,7 @@ function Profile() {
                             </TableRow>
                             <TableRow>
                                 <TableCell>
-                                    <Typography variant='h3'>
+                                    <Typography variant='h5'>
                                         Role
                                     </Typography>
                                 </TableCell>
@@ -111,7 +113,7 @@ function Profile() {
                             {!changePassword &&
                                 <TableRow>
                                     <TableCell>
-                                        <Typography variant='h3'>
+                                        <Typography variant='h5'>
                                             Password
                                         </Typography>
                                     </TableCell>
@@ -132,7 +134,7 @@ function Profile() {
                             {changePassword &&
                                 <TableRow>
                                     <TableCell>
-                                        <Typography variant='h3'>
+                                        <Typography variant='h5'>
                                             Change Password
                                         </Typography>
                                         <ChangePassword handleChangePassword={handleChangePassword} />

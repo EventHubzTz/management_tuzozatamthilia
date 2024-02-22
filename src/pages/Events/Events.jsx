@@ -25,11 +25,12 @@ import { CustomAlert } from "../../components/custom-alert";
 import { FormDialog } from "../../components/form-dialog";
 import { eventFormFields } from "../../seed/form-fields";
 import Layout from "../../layouts/Layout";
-import { CameraOutlined, DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { CameraOutlined, DeleteOutlined, EditOutlined, WalletOutlined, PlusOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { formatDate } from "../../utils/date-formatter";
 import dayjs from "dayjs";
 import ViewEventMedia from "./ViewEventMedia";
+import ViewPackages from "./ViewPackages";
 
 const useContentsIds = (administrators) => {
     return React.useMemo(() => {
@@ -57,6 +58,7 @@ function Events() {
     const adminSelection = useSelection(administratorsIds);
     const [openCreateDialog, setOpenCreateDialog] = React.useState(false);
     const [openViewEventMediaDialog, setOpenViewEventMediaDialog] = React.useState(false);
+    const [openViewEventPackageDialog, setOpenViewEventPackageDialog] = React.useState(false);
     const [openDeleteDialog, setOpenDeleteDialog] = React.useState(false);
     const [openAlert, setOpenAlert] = React.useState(false);
     const [severity, setSeverity] = React.useState("");
@@ -220,6 +222,14 @@ function Events() {
         setOpenViewEventMediaDialog(false)
     }
 
+    const handleClickOpenViewEventPackageDialog = () => {
+        setOpenViewEventPackageDialog(true)
+    }
+
+    const handleCloseViewEventPackageDialog = () => {
+        setOpenViewEventPackageDialog(false)
+    }
+
     const handleClickOpenDeleteDialog = () => {
         setOpenDeleteDialog(true);
     };
@@ -280,6 +290,14 @@ function Events() {
             },
         },
         {
+            id: 'packages',
+            label: 'Packages',
+            icon: <WalletOutlined />,
+            onClick: () => {
+                handleClickOpenViewEventPackageDialog()
+            },
+        },
+        {
             id: "edit",
             label: "Edit",
             icon: (
@@ -329,6 +347,13 @@ function Events() {
                 <ViewEventMedia
                     open={openViewEventMediaDialog}
                     handleClose={handleCloseViewEventMediaDialog}
+                    selected={selectedData}
+                />
+            }
+            {openViewEventPackageDialog &&
+                <ViewPackages
+                    open={openViewEventPackageDialog}
+                    handleClose={handleCloseViewEventPackageDialog}
                     selected={selectedData}
                 />
             }

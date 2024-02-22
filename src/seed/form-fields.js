@@ -45,7 +45,11 @@ export const eventFormFields = [
     { name: "event_time", type: "dateTime", label: "Event Time", notRequired: false, minimumCharacters: 3 },
     { name: "event_description", type: "text", label: "Event Description", notRequired: false, minimumCharacters: 3 },
     { name: "event_capacity", type: "number", label: "Event Capacity", notRequired: false, minimumCharacters: 1 },
-    { name: "event_entrance", type: "number", label: "Event Entrance", notRequired: false, minimumCharacters: 3 },
     { name: "event_category_id", type: "select", label: "Event Category", items: [], notRequired: false, minimumCharacters: 1 },
     { name: "event_sub_category_id", type: "select", label: "Event Sub Category", items: [], notRequired: false, minimumCharacters: 1 },
+]
+
+export const eventPackagesFormFields = [
+    { name: "package_name", type: "text", label: "Package Name", notRequired: false, minimumCharacters: 3 },
+    { name: "amount", type: "number", label: "Amount", notRequired: false, minimumCharacters: 3 },
 ]

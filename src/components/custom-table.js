@@ -22,7 +22,8 @@ import { CustomPopOver } from './custom-popover';
 import { IOSSwitch } from './IOSSwitch';
 import { convertTime } from '../utils/convert-timestamp';
 import { formatDate } from '../utils/date-formatter';
-import { EllipsisOutlined } from '@ant-design/icons';
+import { MoreOutlined } from '@ant-design/icons';
+import { formatMoney } from '../utils/constant';
 
 export const CustomTable = (props) => {
   const {
@@ -248,6 +249,12 @@ export const CustomTable = (props) => {
                                 {formatDate(row.created_at)}
                               </TableCell>
                             )
+                          } else if (column.id === 'amount') {
+                            return (
+                              <TableCell key={index}>
+                                {formatMoney(row.amount)}
+                              </TableCell>
+                            )
                           } else if (column.id === 'actions') {
                             return (
                               <TableCell key={index}>
@@ -257,8 +264,12 @@ export const CustomTable = (props) => {
                                     popOver.handleOpen(event)
                                     onSelect(row, false)
                                   }}
+                                  sx={{
+                                    color: "black",
+                                    fontSize: "30px"
+                                  }}
                                 >
-                                  <EllipsisOutlined />
+                                  <MoreOutlined />
                                 </IconButton>
                               </TableCell>
                             )

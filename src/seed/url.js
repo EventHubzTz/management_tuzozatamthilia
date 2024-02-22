@@ -37,5 +37,11 @@ export const deleteEventImageUrl = `${eventHubServiceUrl}/api/v1/delete/event/im
 export const deleteEventUrl = `${eventHubServiceUrl}/api/v1/delete/event`
 export const getDashboardStatisticsUrl = `${eventHubServiceUrl}/api/v1/get/dashboard/statistics`
 
+//EVENT PACKAGES MANAGEMENT URLs
+export const addEventPackageUrl = `${eventHubServiceUrl}/api/v1/add/event/package`
+export const getEventPackagesUrl = `${eventHubServiceUrl}/api/v1/get/event/packages`
+export const updateEventPackageUrl = `${eventHubServiceUrl}/api/v1/update/event/package`
+export const deleteEventPackageUrl = `${eventHubServiceUrl}/api/v1/delete/event/package`
+
 //PAYMENT URLs
 export const getAllPaymentTransactionsUrl = `${eventHubServiceUrl}/api/v1/get/payment/transaction`

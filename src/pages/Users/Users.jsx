@@ -14,7 +14,7 @@ import { ConfirmationDialog } from "../../components/confirmation-dialog";
 import { CREATE, userRoles } from "../../utils/constant";
 import { authPostRequest } from "../../services/api-service";
 import {
-    deleteAccountUrl,
+    deleteUserUrl,
     enableDisableUserUrl,
     getAllUsersByRoleUrl,
     registerUserByRoleUrl,
@@ -184,9 +184,9 @@ function Users() {
     const handleDelete = async () => {
         setIsDeleting(true);
         authPostRequest(
-            deleteAccountUrl,
+            deleteUserUrl,
             {
-                user_id: selectedData.id,
+                id: selectedData.id,
             },
             (data) => {
                 fetcher(administrators.page);

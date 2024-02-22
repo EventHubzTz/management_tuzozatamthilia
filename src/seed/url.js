@@ -11,7 +11,7 @@ export const getUserUrl = `${eventHubServiceUrl}/api/v1/get/user`
 export const registerUserByRoleUrl = `${eventHubServiceUrl}/api/v1/register/user`
 export const enableDisableUserUrl = `${eventHubServiceUrl}/api/enable/disable/user`
 export const changePasswordUrl = `${eventHubServiceUrl}/api/v1/change/password`
-export const deleteAccountUrl = `${eventHubServiceUrl}/api/delete/account`
+export const deleteUserUrl = `${eventHubServiceUrl}/api/v1/delete/user`
 
 //CATEGORY MANAGEMENT URLs
 export const createCategoryUrl = `${eventHubServiceUrl}/api/v1/create/event/category`

@@ -151,23 +151,11 @@ export const eventPackagesHeadCells = [
 
 export const paymentHeadCells = [
     {
-        id: 'order_id',
-        label: 'Order ID',
-    },
-    {
-        id: 'transaction_id',
-        label: 'Transaction ID',
-    },
-    {
         id: 'event_name',
         label: 'Event Name',
     },
     {
-        id: 'amount',
-        label: 'Amount',
-    },
-    {
-        id: 'full_name',
+        id: 'ticket_owner',
         label: 'Full Name',
     },
     {
@@ -175,11 +163,23 @@ export const paymentHeadCells = [
         label: 'Payment Number',
     },
     {
+        id: 'location',
+        label: 'Location',
+    },
+    {
+        id: 't_shirt_size',
+        label: 'T Shirt Size',
+    },
+    {
+        id: 'amount',
+        label: 'Amount',
+    },
+    {
         id: 'payment_status',
         label: 'Payment Status',
     },
     {
-        id: 'created_at',
+        id: 'placed_at',
         label: 'Date',
     },
 ]

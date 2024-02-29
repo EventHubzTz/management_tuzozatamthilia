@@ -230,19 +230,6 @@ export const CustomTable = (props) => {
                                 />
                               </TableCell>
                             )
-                          } else if (column.id === 'location') {
-                            return (
-                              <TableCell key={index}>
-                                {row.region},<br />
-                                {row.district},<br />
-                                {row.ward &&
-                                  <>
-                                    {row.ward},<br />
-                                  </>
-                                }
-                                {row.street}.
-                              </TableCell>
-                            )
                           } else if (column.id === 'placed_at') {
                             return (
                               <TableCell key={index}>

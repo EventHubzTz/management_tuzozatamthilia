@@ -163,6 +163,14 @@ export const paymentHeadCells = [
         label: 'Payment Number',
     },
     {
+        id: 'age',
+        label: 'Age',
+    },
+    {
+        id: 'distance',
+        label: 'Distance',
+    },
+    {
         id: 'location',
         label: 'Location',
     },

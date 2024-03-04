@@ -83,15 +83,6 @@ const dashboard = {
       breadcrumbs: false,
       roles: ["EVENT_PLANNER", "SUPER_ADMIN"]
     },
-    {
-      id: 'settings',
-      title: 'Settings',
-      type: 'item',
-      url: '/settings',
-      icon: icons.SettingOutlined,
-      breadcrumbs: false,
-      roles: ["SUPER_ADMIN"]
-    },
   ]
 };
 

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Grid, Skeleton } from '@mui/material'
+import { Grid, Skeleton, Typography } from '@mui/material'
 import AnalyticEcommerce from '../../components/cards/statistics/AnalyticEcommerce';
-import { authGetRequest } from '../../services/api-service';
+import { authPostRequest } from '../../services/api-service';
 import { getDashboardStatisticsUrl } from '../../seed/url';
 import { formatMoney } from '../../utils/constant';
 
@@ -15,8 +15,12 @@ function EventPlannerOverview() {
 
     const getProductsOrdersStatistics = React.useCallback(
         () => {
-            authGetRequest(
+            authPostRequest(
                 getDashboardStatisticsUrl,
+                {
+                    from: "body.from.format('YYYY-MM-DD HH:mm:ss.SSS')",
+                    to: "body.to.format('YYYY-MM-DD HH:mm:ss.SSS')",
+                },
                 (data) => {
                     setDashboardData(data);
                     setIsLoading(false)
@@ -35,6 +39,9 @@ function EventPlannerOverview() {
 
     return (
         <>
+            <Grid item xs={12} sx={{ mb: -2.25 }}>
+                <Typography variant="h4">Dashboard</Typography>
+            </Grid>
             {isLoading &&
                 <>
                     <Grid item lg={3} sm={6} xl={3} xs={12}>

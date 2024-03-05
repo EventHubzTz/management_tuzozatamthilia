@@ -33,7 +33,7 @@ const AnalyticEcommerce = ({ color, title, count, percentage }) => (
     </Stack>
     <Box sx={{ pt: 2.25 }}>
       <Typography variant="caption" color="textSecondary">
-        All time records
+        {/* All time records */}
       </Typography>
     </Box>
   </MainCard>

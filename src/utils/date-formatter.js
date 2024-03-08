@@ -21,3 +21,10 @@ export const convertDateFormat = (dateString) => {
     const convertedDate = `${month}/${day}/${year}`;
     return convertedDate;
 };
+
+export const formatDateForExcel = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleDateString('en-GB');
+
+    return formattedDate;
+};

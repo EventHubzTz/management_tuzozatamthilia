@@ -46,26 +46,7 @@ export const CustomSearch = ({
         sx={{ maxWidth: 500, mr: "auto" }}
         onChange={(event) => handleSearch && handleSearch(event)}
       />
-      {confirmSelectedOrderStatus && statusOfOrder.map((item, index) => {
-        return (
-          <Button
-            key={index}
-            disabled={selectedItems.selected.length === 0}
-            onClick={(event) => {
-              confirmSelectedOrderStatus(item.value)
-            }}
-            variant="contained"
-            sx={{
-              color: "neutral.100",
-              m: 1
-            }}
-          >
-            {item.label}
-          </Button>
-        );
-      })
-      }
-      {popoverItems &&
+      {getDataForExportExcel &&
         <>
           <Tooltip title={'Download excel'}>
             <Button
@@ -73,20 +54,10 @@ export const CustomSearch = ({
               disabled={exportExcel}
               sx={{ mr: 2 }}
               onClick={() => {
-                getDataForExportExcel && getDataForExportExcel()
+                getDataForExportExcel()
               }}
             >
-              Download Excel
-            </Button>
-          </Tooltip>
-          <Tooltip title={'Filter'}>
-            <Button
-              variant='outlined'
-              onClick={(event) => {
-                popOver.handleOpen(event)
-              }}
-            >
-              Filter
+              {exportExcel ? "Exporting..." : "Download Excel"}
             </Button>
           </Tooltip>
         </>

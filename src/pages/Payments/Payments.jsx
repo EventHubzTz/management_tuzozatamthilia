@@ -14,17 +14,50 @@ import { authPostRequest } from "../../services/api-service";
 import { getAllPaymentTransactionsUrl } from "../../seed/url";
 import Layout from "../../layouts/Layout";
 import { MaterialUICustomTabs } from "../../components/MaterialUICustomTabs";
+import { formatDateForExcel } from "../../utils/date-formatter";
+import { utils, writeFile } from "xlsx";
+import dayjs from "dayjs";
 
-const useContentsIds = (administrators) => {
+const usePaymentsIds = (payments) => {
     return React.useMemo(() => {
-        return administrators.map((customer) => customer.id);
-    }, [administrators]);
+        return payments.map((customer) => customer.id);
+    }, [payments]);
+};
+
+export const handleExport = (data) => {
+    if (data.length > 0) {
+        const newData = data.map((row, index) => {
+            const newRow = {
+                "S/No": index + 1,
+                "Event Name": row?.event_name,
+                "Full Name": row?.ticket_owner,
+                "Payment Number": row?.phone_number,
+                "Age": row?.age,
+                "Distance": row?.distance,
+                "Location": row?.location,
+                "T Shirt Size": row?.t_shirt_size,
+                "Amount": row?.amount,
+                "Payment Status": row?.payment_status,
+                "Date": formatDateForExcel(row?.created_at),
+            };
+            return newRow;
+        });
+        data = newData;
+        let headings = Object.keys(data[0]);
+        const wb = utils.book_new();
+        const ws = utils.json_to_sheet([]);
+        utils.sheet_add_aoa(ws, [headings]);
+        utils.sheet_add_json(ws, data, { origin: "A2", skipHeader: true });
+        utils.book_append_sheet(wb, ws, "Orders");
+        writeFile(wb, `Pugu Marathon Payments ${dayjs().format("YYYY-MM-DD HH:mm:ss")}.xlsx`);
+    }
 };
 
 function Payments() {
+    const [exportExcel, setExportExcel] = React.useState(false);
     const [currentTab, setCurrentTab] = React.useState("");
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [administrators, setAdministrators] = React.useState({
+    const [payments, setAdministrators] = React.useState({
         page: 1,
         total_results: 0,
         total_pages: 0,
@@ -33,8 +66,8 @@ function Payments() {
     const [selectedData, setSelectedData] = React.useState({});
     const [searchTerm, setSearchTerm] = React.useState("");
     const [isLoading, setIsLoading] = React.useState(true);
-    const administratorsIds = useContentsIds(administrators.results);
-    const adminSelection = useSelection(administratorsIds);
+    const paymentsIds = usePaymentsIds(payments.results);
+    const paymentsSelection = useSelection(paymentsIds);
     const [order, setOrder] = React.useState('desc');
     const [orderBy, setOrderBy] = React.useState('id');
 
@@ -42,6 +75,27 @@ function Payments() {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
+    };
+
+    const getDataForExportExcel = () => {
+        setExportExcel(true);
+        authPostRequest(
+            getAllPaymentTransactionsUrl,
+            {
+                query: searchTerm,
+                status: currentTab,
+                sort: orderBy + " " + order,
+                limit: payments.total_results,
+                page: 1,
+            },
+            (data) => {
+                handleExport(data?.results);
+                setExportExcel(false);
+            },
+            (error) => {
+                setExportExcel(false);
+            }
+        );
     };
 
     const fetcher = React.useCallback(
@@ -121,24 +175,29 @@ function Payments() {
                             setActiveTab={setCurrentTab}
                             tabsData={paymentStatus}
                         />
-                        <CustomSearch handleSearch={handleSearch} />
+                        <CustomSearch
+                            handleSearch={handleSearch}
+                            exportExcel={exportExcel}
+                            getDataForExportExcel={getDataForExportExcel}
+                            selectedItems={paymentsSelection}
+                        />
                         <CustomTable
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
-                            count={administrators.total_results}
-                            items={administrators.results}
+                            count={payments.total_results}
+                            items={payments.results}
                             onPageChange={handlePageChange}
                             onRowsPerPageChange={handleRowsPerPageChange}
-                            onSelectOne={adminSelection.handleSelectOne}
+                            onSelectOne={paymentsSelection.handleSelectOne}
                             onSelect={onSelect}
                             page={
-                                administrators.page >= 1
-                                    ? administrators.page - 1
-                                    : administrators.page
+                                payments.page >= 1
+                                    ? payments.page - 1
+                                    : payments.page
                             }
                             rowsPerPage={rowsPerPage}
-                            selected={adminSelection.selected}
+                            selected={paymentsSelection.selected}
                             headCells={paymentHeadCells}
                             popoverItems={contentPopoverItems}
                             isLoading={isLoading}

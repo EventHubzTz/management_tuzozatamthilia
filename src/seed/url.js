@@ -1,8 +1,8 @@
 //LIVE SERVER BASE URLs
-// export const eventHubServiceUrl = "https://www.service.eventhubtz.com"
+export const eventHubServiceUrl = "https://www.service.eventhubtz.com"
 
 //TEST BED BASE URLs
-export const eventHubServiceUrl = "https://www.testbed.service.eventhubtz.com"
+// export const eventHubServiceUrl = "https://www.testbed.service.eventhubtz.com"
 
 //LOCAL SERVER BASE URLs
 // export const eventHubServiceUrl = "http://192.168.1.142:3009"
@@ -48,3 +48,10 @@ export const deleteEventPackageUrl = `${eventHubServiceUrl}/api/v1/delete/event/
 
 //PAYMENT URLs
 export const getAllPaymentTransactionsUrl = `${eventHubServiceUrl}/api/v1/get/payment/transaction`
+
+//DEKANIA MANAGEMENT URLs
+export const createDekaniaUrl = `${eventHubServiceUrl}/api/v1/add/dekania`
+export const getAllDekaniaUrl = `${eventHubServiceUrl}/api/v1/get/all/dekania`
+export const getAllDekaniaByPaginationUrl = `${eventHubServiceUrl}/api/v1/get/all/dekania/by/pagination`
+export const updateDekaniaUrl = `${eventHubServiceUrl}/api/v1/update/dekania`
+export const deleteDekaniaUrl = `${eventHubServiceUrl}/api/v1/delete/dekania`

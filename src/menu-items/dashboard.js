@@ -1,10 +1,11 @@
 // assets
-import { DashboardOutlined, FieldTimeOutlined, MoneyCollectOutlined, SettingOutlined, TableOutlined, UsergroupAddOutlined, UserOutlined, WalletOutlined } from '@ant-design/icons';
+import { DashboardOutlined, FieldTimeOutlined, HeatMapOutlined, MoneyCollectOutlined, SettingOutlined, TableOutlined, UsergroupAddOutlined, UserOutlined, WalletOutlined } from '@ant-design/icons';
 
 // icons
 const icons = {
   DashboardOutlined,
   FieldTimeOutlined,
+  HeatMapOutlined,
   MoneyCollectOutlined,
   SettingOutlined,
   TableOutlined,
@@ -62,6 +63,15 @@ const dashboard = {
       type: 'item',
       url: '/users',
       icon: icons.UsergroupAddOutlined,
+      breadcrumbs: false,
+      roles: ["SUPER_ADMIN"]
+    },
+    {
+      id: 'dekania',
+      title: 'Dekania',
+      type: 'item',
+      url: '/dekania',
+      icon: icons.HeatMapOutlined,
       breadcrumbs: false,
       roles: ["SUPER_ADMIN"]
     },

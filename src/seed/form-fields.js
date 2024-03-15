@@ -53,3 +53,7 @@ export const eventPackagesFormFields = [
     { name: "package_name", type: "text", label: "Package Name", notRequired: false, minimumCharacters: 3 },
     { name: "amount", type: "number", label: "Amount", notRequired: false, minimumCharacters: 3 },
 ]
+
+export const dekaniaFormFields = [
+    { name: "dekania_name", type: "text", label: "Dekania Name", notRequired: false, minimumCharacters: 3 },
+]

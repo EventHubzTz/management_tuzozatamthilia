@@ -8,6 +8,7 @@ import Wallet from "../pages/Wallet/Wallet";
 import Profile from "../pages/Profile/Profile";
 import Settings from "../pages/Settings/Settings";
 import Categories from "../pages/Categories/Categories";
+import Dekania from "../pages/Dekania/Dekania";
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
     {
         path: "users",
         element: <Users />,
+    },
+    {
+        path: "dekania",
+        element: <Dekania />,
     },
     {
         path: "wallet",

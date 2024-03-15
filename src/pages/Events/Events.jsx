@@ -138,13 +138,13 @@ function Events() {
                     return newItem;
                 });
                 let newFormFields = formFields;
-                newFormFields[7].items = newProductsSubCategories;
+                newFormFields[6].items = newProductsSubCategories;
                 setFormFields(newFormFields);
                 setIsLoading(false)
             },
             (error) => {
                 let newFormFields = formFields;
-                newFormFields[7].items = [];
+                newFormFields[6].items = [];
                 setFormFields(newFormFields);
                 setIsLoading(false)
             },
@@ -175,7 +175,7 @@ function Events() {
 
     React.useEffect(() => {
         if (categories.length > 0) {
-            const newProductsCategories = categories.map((category) => {
+            const newEventssCategories = categories.map((category) => {
                 const newItem = {};
                 ["label", "value"].forEach((item) => {
                     if (item === "label") {
@@ -188,7 +188,7 @@ function Events() {
                 return newItem;
             });
             let newFormFields = formFields;
-            newFormFields[6].items = newProductsCategories;
+            newFormFields[5].items = newEventssCategories;
             setFormFields(newFormFields);
         }
     }, [categories, formFields])

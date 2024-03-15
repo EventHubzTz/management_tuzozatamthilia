@@ -191,3 +191,22 @@ export const paymentHeadCells = [
         label: 'Date',
     },
 ]
+
+export const dekaniaHeadCells = [
+    {
+        id: 'id',
+        label: 'ID',
+    },
+    {
+        id: 'dekania_name',
+        label: 'Dekania Name',
+    },
+    {
+        id: 'actions',
+        label: '',
+    },
+    {
+        id: 'created_at',
+        label: 'Date',
+    },
+]

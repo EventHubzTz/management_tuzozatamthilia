@@ -28,17 +28,18 @@ export const handleExport = (data) => {
     if (data.length > 0) {
         const newData = data.map((row, index) => {
             const newRow = {
-                "S/No": index + 1,
-                "Event Name": row?.event_name,
-                "Full Name": row?.ticket_owner,
-                "Payment Number": row?.phone_number,
-                "Age": row?.age,
-                "Distance": row?.distance,
-                "Location": row?.location,
-                "T Shirt Size": row?.t_shirt_size,
-                "Amount": row?.amount,
+                "S/Nos": index + 1,
+                "Phone Numbers": row?.phone_number,
+                "Price": row?.total_amount,
+                "Customer ID": row?.generated_id,
+                "Nominee": row?.voted_for,
+                "Votes Count": row?.vote_numbers,
+                "Nominee Code": row?.voted_for_code,
+                "Longitude": row?.longitude,
+                "Latitude": row?.latitude,
                 "Payment Status": row?.payment_status,
-                "Date": formatDateForExcel(row?.created_at),
+                "Date": formatDateForExcel(row?.placed_at),
+                "IP Address": row?.ipaddress,
             };
             return newRow;
         });
@@ -49,7 +50,7 @@ export const handleExport = (data) => {
         utils.sheet_add_aoa(ws, [headings]);
         utils.sheet_add_json(ws, data, { origin: "A2", skipHeader: true });
         utils.book_append_sheet(wb, ws, "Orders");
-        writeFile(wb, `Pugu Marathon Payments ${dayjs().format("YYYY-MM-DD HH:mm:ss")}.xlsx`);
+        writeFile(wb, `Tuzo Votes Payments ${dayjs().format("YYYY-MM-DD HH:mm:ss")}.xlsx`);
     }
 };
 
@@ -167,7 +168,7 @@ function Payments() {
                     <Stack spacing={3}>
                         <Stack direction="row" justifyContent="space-between" spacing={4}>
                             <Stack spacing={1}>
-                                <Typography variant="h4">Payments</Typography>
+                                <Typography variant="h4">Voting Payments</Typography>
                             </Stack>
                         </Stack>
                         <MaterialUICustomTabs

@@ -2,7 +2,9 @@
 // export const eventHubServiceUrl = "https://www.service.eventhubtz.com"
 
 //TEST BED BASE URLs
+// export const eventHubServiceUrl = "https://service.tuzozafilamu.info"
 export const eventHubServiceUrl = "https://www.testbed.service.eventhubtz.com"
+export const servicestuzotamthilia = "https://service.tuzozatamthilia.info"
 
 //LOCAL SERVER BASE URLs
 // export const eventHubServiceUrl = "http://192.168.1.142:3009"
@@ -47,7 +49,8 @@ export const updateEventPackageUrl = `${eventHubServiceUrl}/api/v1/update/event/
 export const deleteEventPackageUrl = `${eventHubServiceUrl}/api/v1/delete/event/package`
 
 //PAYMENT URLs
-export const getAllPaymentTransactionsUrl = `${eventHubServiceUrl}/api/v1/get/payment/transaction`
+// export const getAllPaymentTransactionsUrl = `${eventHubServiceUrl}/api/v1/get/payment/transaction`
+export const getAllPaymentTransactionsUrl = `${servicestuzotamthilia}/api/v1/get/voting/payment/transactions`
 
 //DEKANIA MANAGEMENT URLs
 export const createDekaniaUrl = `${eventHubServiceUrl}/api/v1/add/dekania`

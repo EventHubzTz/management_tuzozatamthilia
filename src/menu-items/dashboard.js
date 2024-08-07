@@ -39,15 +39,15 @@ const dashboard = {
       breadcrumbs: false,
       roles: ["SUPER_ADMIN"]
     },
-    {
-      id: 'events',
-      title: 'Events',
-      type: 'item',
-      url: '/events',
-      icon: icons.FieldTimeOutlined,
-      breadcrumbs: false,
-      roles: ["EVENT_PLANNER", "SUPER_ADMIN"]
-    },
+    // {
+    //   id: 'events',
+    //   title: 'Events',
+    //   type: 'item',
+    //   url: '/events',
+    //   icon: icons.FieldTimeOutlined,
+    //   breadcrumbs: false,
+    //   roles: ["EVENT_PLANNER", "SUPER_ADMIN"]
+    // },
     {
       id: 'payments',
       title: 'Payments',
@@ -66,24 +66,24 @@ const dashboard = {
       breadcrumbs: false,
       roles: ["SUPER_ADMIN"]
     },
-    {
-      id: 'dekania',
-      title: 'Dekania',
-      type: 'item',
-      url: '/dekania',
-      icon: icons.HeatMapOutlined,
-      breadcrumbs: false,
-      roles: ["SUPER_ADMIN"]
-    },
-    {
-      id: 'wallet',
-      title: 'Wallet',
-      type: 'item',
-      url: '/wallet',
-      icon: icons.WalletOutlined,
-      breadcrumbs: false,
-      roles: ["EVENT_PLANNER"]
-    },
+    // {
+    //   id: 'dekania',
+    //   title: 'Dekania',
+    //   type: 'item',
+    //   url: '/dekania',
+    //   icon: icons.HeatMapOutlined,
+    //   breadcrumbs: false,
+    //   roles: ["SUPER_ADMIN"]
+    // },
+    // {
+    //   id: 'wallet',
+    //   title: 'Wallet',
+    //   type: 'item',
+    //   url: '/wallet',
+    //   icon: icons.WalletOutlined,
+    //   breadcrumbs: false,
+    //   roles: ["EVENT_PLANNER"]
+    // },
     {
       id: 'profile',
       title: 'Profile',

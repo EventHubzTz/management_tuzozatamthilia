@@ -44,11 +44,11 @@ export const categoriesHeadCells = [
     },
     {
         id: 'actions',
-        label: '',
+        label: 'Category ID',
     },
     {
-        id: 'event_category_color',
-        label: 'Category Color',
+        id: 'Description',
+        label: 'Description',
     },
     {
         id: 'created_at',
@@ -86,7 +86,7 @@ export const eventHeadCells = [
     },
     {
         id: 'event_name',
-        label: 'Event Name',
+        label: 'Name',
     },
     {
         id: 'actions',
@@ -94,31 +94,31 @@ export const eventHeadCells = [
     },
     {
         id: 'event_owner',
-        label: 'Event Owner',
+        label: 'Owner',
     },
     {
         id: 'event_category_name',
-        label: 'Event Category',
+        label: 'Category',
     },
     {
         id: 'event_sub_category_name',
-        label: 'Event Sub Category',
+        label: 'Sub Category',
     },
     {
         id: 'event_location',
-        label: 'Event Location',
+        label: 'Location',
     },
     {
         id: 'event_time',
-        label: 'Event Time',
+        label: 'Time',
     },
     {
         id: 'event_capacity',
-        label: 'Event Capacity',
+        label: 'Capacity',
     },
     {
         id: 'event_description',
-        label: 'Event Description',
+        label: 'Description',
     },
     {
         id: 'created_at',
@@ -151,36 +151,40 @@ export const eventPackagesHeadCells = [
 
 export const paymentHeadCells = [
     {
-        id: 'event_name',
-        label: 'Event Name',
-    },
-    {
-        id: 'ticket_owner',
-        label: 'Full Name',
+        id: 'id',
+        label: 'S/Nos',
     },
     {
         id: 'phone_number',
-        label: 'Payment Number',
+        label: 'Phone Numbers',
     },
     {
-        id: 'age',
-        label: 'Age',
+        id: 'total_amount',
+        label: 'Price',
     },
     {
-        id: 'distance',
-        label: 'Distance',
+        id: 'generated_id',
+        label: 'Customer ID',
     },
     {
-        id: 'location',
-        label: 'Location',
+        id: 'voted_for',
+        label: 'Nominee',
     },
     {
-        id: 't_shirt_size',
-        label: 'T Shirt Size',
+        id: 'vote_numbers',
+        label: 'Votes Count',
     },
     {
-        id: 'amount',
-        label: 'Amount',
+        id: 'voted_for_code',
+        label: 'Nominee Code',
+    },
+    {
+        id: 'longitude',
+        label: 'Longitude',
+    },
+    {
+        id: 'latitude',
+        label: 'Latitude',
     },
     {
         id: 'payment_status',
@@ -189,6 +193,10 @@ export const paymentHeadCells = [
     {
         id: 'placed_at',
         label: 'Date',
+    },
+    {
+        id: 'Ipaddress',
+        label: 'IP Address',
     },
 ]
 

@@ -30,7 +30,7 @@ const DrawerHeader = ({ open }) => {
           }}
         >
           <Avatar alt='logo' src='/assets/images/image_crown.jpeg' />
-          <Typography variant='h3' sx={{ ml: 2 }}>Tuzo Za Tamthilia</Typography>
+          <Typography variant='h3' sx={{ ml: 2 }}>Tamthilia</Typography>
         </Box>
       </Stack>
     </DrawerHeaderStyled>
